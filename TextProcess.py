@@ -40,15 +40,29 @@ def TextSeg(datas, lag):
 def TextExtractTags(words_feature, text, topK=10): # 每个text对应tags
     #-------------------------------------------------------------------------------
     tf_results = {}
-    for word_feature in words_feature:
-        word_count = text.count(word_feature)
-        length = len(text)
-        tf = word_count/length
-        tf_results[word_feature] = tf
+    for word in text:
+        if tf_results.has_key(word):
+            tf_results[word] += 1
+        else:
+            if word in words_feature:
+                tf_results[word] = 1
+    length = len(text)
+    for key in tf_results:
+        tf_results[key] /= length
+    #-------------------------------------------------------------------------------
+    # tf_results = {}
+    # for word_feature in words_feature:
+    #     word_count = text.count(word_feature)
+    #     length = len(text)
+    #     tf = word_count/length
+    #     tf_results[word_feature] = tf
+    #-------------------------------------------------------------------------------
     # key函数利用词频进行降序排序
     tf_list = sorted(tf_results.items(), key=lambda tf_result:tf_result[1], reverse=True) # 内建函数sorted参数需为list
-    top_tuples = tf_list[:topK]
-    tags = [top_tuple[0] for top_tuple in top_tuples]
+    tags = []
+    top_tf_list = tf_list[:topK]
+    for tag, tf in top_tf_list:
+        tags.append(tag)
     #-------------------------------------------------------------------------------
     return tags
 
