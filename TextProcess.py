@@ -1,4 +1,5 @@
 #coding: utf-8
+from __future__ import division
 __author__ = 'LiNing'
 
 import re
@@ -87,42 +88,29 @@ def MakeStopWordsList(stopwords_file):
 
 def MakeFeatureWordsDict(all_words_list, stopwords_list, dict_size, lag): # 特征词words_feature是选用的word-词典
     dict = open("./Config/fea_dict_"+lag, 'w')
-    n = 1
+    n = 0
     words_feature = []
     if lag == "eng": # 英文情况
-        wordlen_min = 2
-        wordlen_max = 15
-        for all_words in all_words_list:
-            if n>dict_size:
-                break
-            # if not all_words.isdigit() and not all_words == "\r\n": # 不是数字
-            # if not all_words.isdigit() and not all_words == "\r\n" and not all_words in stopwords_list: # 不是数字
-            # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n": # 英文
-            if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
-            # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
-            # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中文
-                if wordlen_min<len(all_words)<wordlen_max: # unicode长度
-                    dict.writelines(all_words.encode("utf-8")) # 将unicode转换为utf-8
-                    dict.writelines("\n")
-                    words_feature.append(all_words)
-                    n += 1
+        wordlen_min, wordlen_max = 2, 15
     elif lag == "chs": # 中文情况
-        wordlen_min = 1
-        wordlen_max = 5
-        for all_words in all_words_list:
-            if n>dict_size:
-                break
-            # if not all_words.isdigit() and not all_words == "\r\n": # 不是数字
-            # if not all_words.isdigit() and not all_words == "\r\n" and not all_words in stopwords_list: # 不是数字
-            # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n": # 英文
-            # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
-            # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
-            if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中文
-                if wordlen_min<len(all_words)<wordlen_max: # unicode长度
-                    dict.writelines(all_words.encode("utf-8")) # 将unicode转换为utf-8
-                    dict.writelines("\n")
-                    words_feature.append(all_words)
-                    n += 1
+        wordlen_min, wordlen_max = 1, 5
+    else:
+        wordlen_min, wordlen_max = 1, 15
+    for all_words in all_words_list:
+        if n == dict_size:
+            break
+        # if not all_words.isdigit() and not all_words == "\r\n": # 不是数字
+        # if not all_words.isdigit() and not all_words == "\r\n" and not all_words in stopwords_list: # 不是数字
+        # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n": # 英文
+        # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
+        # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
+        # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中文
+        if re.match(ur'^[\u4e00-\u9fa5]+$|^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中英文
+            if wordlen_min<len(all_words)<wordlen_max: # unicode长度
+                dict.writelines(all_words.encode("utf-8")) # 将unicode转换为utf-8
+                dict.writelines("\n")
+                words_feature.append(all_words)
+                n += 1
     dict.close()
     print "all_words length in words_feature: ", len(words_feature)
     return words_feature
