@@ -95,7 +95,8 @@ def MakeFeatureWordsDict(all_words_list, stopwords_list, dict_size, lag): # 特�
         for all_words in all_words_list:
             if n>dict_size:
                 break
-            # if not all_words.isdigit(): # 不是数字
+            # if not all_words.isdigit() and not all_words == "\r\n": # 不是数字
+            # if not all_words.isdigit() and not all_words == "\r\n" and not all_words in stopwords_list: # 不是数字
             # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n": # 英文
             if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
             # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
@@ -111,7 +112,8 @@ def MakeFeatureWordsDict(all_words_list, stopwords_list, dict_size, lag): # 特�
         for all_words in all_words_list:
             if n>dict_size:
                 break
-            # if not all_words.isdigit(): # 不是数字
+            # if not all_words.isdigit() and not all_words == "\r\n": # 不是数字
+            # if not all_words.isdigit() and not all_words == "\r\n" and not all_words in stopwords_list: # 不是数字
             # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n": # 英文
             # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
             # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
