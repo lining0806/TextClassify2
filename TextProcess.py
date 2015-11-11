@@ -45,7 +45,6 @@ def TextExtractTags(words_feature, text, topK=10): # 每个text对应tags
         length = len(text)
         tf = word_count/length
         tf_results[word_feature] = tf
-        # tf_result[word_feature] = tf_result.get(word_feature, tf)
     # key函数利用词频进行降序排序
     tf_list = sorted(tf_results.items(), key=lambda tf_result:tf_result[1], reverse=True) # 内建函数sorted参数需为list
     top_tuples = tf_list[:topK]
