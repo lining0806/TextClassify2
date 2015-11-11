@@ -1,0 +1,23 @@
+# 对应语言
+#lag = "eng"
+lag = "chs"
+
+# 特征词典维度
+dict_size = 300
+
+# 训练集配置
+train_host = "localhost"
+train_port = 27017
+train_name = ""
+train_password = ""
+train_database = "textclassify"
+train_collection = "WallstreetcnSave"
+
+# 测试集配置
+test_host = "localhost"
+test_port = 27017
+test_name = ""
+test_password = ""
+test_database = "textclassify"
+test_collection = "WallstreetcnSave"
+Limit_Number = 100
