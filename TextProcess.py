@@ -100,7 +100,7 @@ def MakeFeatureWordsDict(all_words_list, stopwords_list, dict_size, lag): # 特�
             if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
             # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
             # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中文
-                if (len(all_words)>wordlen_min) and (len(all_words)<wordlen_max): # unicode长度
+                if wordlen_min<len(all_words)<wordlen_max: # unicode长度
                     dict.writelines(all_words.encode("utf-8")) # 将unicode转换为utf-8
                     dict.writelines("\n")
                     words_feature.append(all_words)
@@ -116,7 +116,7 @@ def MakeFeatureWordsDict(all_words_list, stopwords_list, dict_size, lag): # 特�
             # if re.match(ur'^[a-z A-Z -]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 英文
             # if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n": # 中文
             if re.match(ur'^[\u4e00-\u9fa5]+$', all_words) and not all_words == "\r\n" and not all_words in stopwords_list: # 中文
-                if (len(all_words)>wordlen_min) and (len(all_words)<wordlen_max): # unicode长度
+                if (wordlen_min<len(all_words)<wordlen_max: # unicode长度
                     dict.writelines(all_words.encode("utf-8")) # 将unicode转换为utf-8
                     dict.writelines("\n")
                     words_feature.append(all_words)
