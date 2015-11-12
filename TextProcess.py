@@ -2,11 +2,11 @@
 from __future__ import division
 __author__ = 'LiNing'
 
+import os
 import re
 import nltk
 import jieba
 import jieba.analyse
-from os.path import exists
 # dict_path = "./Config/dict"
 # if os.path.exists(dict_path):
 #     jieba.set_dictionary(dict_path) # 主词典
