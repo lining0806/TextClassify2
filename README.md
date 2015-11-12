@@ -1,14 +1,10 @@
 **英文分词，采用nltk工具包进行分词**  
-sudo apt-get install python-nltk  
-进入python命令行输入  
-
-    import nltk
-    nltk.download()  
+pip install nltk 
 **中文分词，采用jieba工具包进行分词**  
+pip install jieba 
 **stopwords_chs和stopwords_eng为过滤词黑名单**    
 * 可以随时添加要过滤的单词，一行一个  
 * 如果添加的过滤词无法正确被jieba分词，则同样方法将该需要过滤的词及词频加入到主词典dict文件中或者用户词典user_dict，一行一个（词频也可省略）  
-* 如stopwords_chs，加入了“阿尼玛”换行， 在dict中加入“阿尼玛 3”，3表示词频，词频越大分词越准确
 
 
 **Ubuntu下pil numpy scipy matplotlib的安装：**  
