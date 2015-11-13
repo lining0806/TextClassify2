@@ -117,11 +117,3 @@ def ResultUpdate(test_host, test_port, test_name, test_password, test_database, 
         posts.update({"_id":id}, {"$set":{"country_test":test_target[u"国家"]}}) ## 支持多维分类
         #-------------------------------------------------------------------------------
         print '{"_id":ObjectId("%s")}' % id # MongoVUE中find命令
-
-
-# 保存操作
-def ResultSave(save_host, save_port, save_name, save_password, save_database, save_collection, save_ids_targets):
-    posts = MongoDBIO(save_host, save_port, save_name, save_password, save_database, save_collection).Connection()
-
-    for save_id_target in save_ids_targets:
-        posts.save(save_id_target)
