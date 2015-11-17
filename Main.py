@@ -67,8 +67,8 @@ if __name__ == '__main__':
             test_database = str(re.search(r'"(.*?)"', line).group(1))
         elif re.match(r'^test_collection', line):
             test_collection = str(re.search(r'"(.*?)"', line).group(1))
-        elif re.match(r'^Limit_Number', line):
-            Limit_Number = int(re.search(r'.*?\s*=\s*(\d+?)\s', line).group(1))
+        elif re.match(r'^limit_number', line):
+            limit_number = int(re.search(r'.*?\s*=\s*(\d+?)\s', line).group(1))
 
 
 #-------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ if __name__ == '__main__':
 #-------------------------------------------------------------------------------
     # 测试集数据提取与分词
     try:
-        test_ids_datas = TestDataSelect(test_host, test_port, test_name, test_password, test_database, test_collection, Limit_Number)
+        test_ids_datas = TestDataSelect(test_host, test_port, test_name, test_password, test_database, test_collection, limit_number)
     except Exception as e:
         print e
         exit()

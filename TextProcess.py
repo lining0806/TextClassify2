@@ -32,6 +32,8 @@ def TextSeg(datas, lag):
             # # tags = jieba.analyse.textrank(data, topK=10)
             # print tags
             #-------------------------------------------------------------------------------
+        else:
+            word_list = []
         # print " ".join(word_list)
         datasseg.append(word_list)
     return datasseg
@@ -58,7 +60,7 @@ def TextExtractTags(words_feature, text, topK=10): # 每个text对应tags
     #     tf_results[word_feature] = tf
     #-------------------------------------------------------------------------------
     # key函数利用词频进行降序排序
-    tf_list = sorted(tf_results.items(), key=lambda tf_result:tf_result[1], reverse=True) # 内建函数sorted参数需为list
+    tf_list = sorted(tf_results.items(), key=lambda f:f[1], reverse=True) # 内建函数sorted参数需为list
     tags = []
     top_tf_list = tf_list[:topK]
     for tag, tf in top_tf_list:
@@ -79,7 +81,7 @@ def MakeAllWordsList(train_datasseg):
     # 所有出现过的词数目
     # print "all_words length in all the train datas: ", len(all_words.keys())
     # key函数利用词频进行降序排序
-    all_words_reverse = sorted(all_words.items(), key=lambda word_item:word_item[1], reverse=True) # 内建函数sorted参数需为list
+    all_words_reverse = sorted(all_words.items(), key=lambda f:f[1], reverse=True) # 内建函数sorted参数需为list
     # for all_word_reverse in all_words_reverse:
     #     print all_word_reverse[0], "\t", all_word_reverse[1]
     all_words_list = [all_word_reverse[0] for all_word_reverse in all_words_reverse if len(all_word_reverse[0])>1]

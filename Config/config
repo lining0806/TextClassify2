@@ -20,4 +20,4 @@ test_name = ""
 test_password = ""
 test_database = "textclassify"
 test_collection = "WallstreetcnSave"
-Limit_Number = 100
+limit_number = 100

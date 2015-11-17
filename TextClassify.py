@@ -24,8 +24,7 @@ def Gne_Train_Dimensions(train_targets):
 def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     results = []
 
-    # ######################################################
-    # date1 = datetime.datetime.now()
+    ######################################################
     # # Multinomial Naive Bayes Classifier
     # from sklearn.naive_bayes import MultinomialNB
     # nbcclf = MultinomialNB() # default with alpha = 1.0 # 分类器模型
@@ -33,17 +32,15 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     # pred = nbcclf.predict(fea_test) # 分类器识别
     # # print "*************************\nMultinomial Naive Bayes Classifier (Gaussian likelihood)\n*************************"
     # results.append(list(pred))
-    # ######################################################
-    # date2 = datetime.datetime.now()
-    # # Linear SVM Classifier (Linear kernel)
-    # from sklearn.svm import LinearSVC
-    # lsvclf = LinearSVC()
-    # lsvclf.fit(fea_train, train_targets_dimensions)
-    # pred = lsvclf.predict(fea_test)
-    # # print "*************************\nLinear SVM Classifier (Linear kernel)\n*************************"
-    # results.append(list(pred))
-    # ######################################################
-    # date3 = datetime.datetime.now()
+    ######################################################
+    # Linear SVM Classifier (Linear kernel)
+    from sklearn.svm import LinearSVC
+    lsvclf = LinearSVC()
+    lsvclf.fit(fea_train, train_targets_dimensions)
+    pred = lsvclf.predict(fea_test)
+    # print "*************************\nLinear SVM Classifier (Linear kernel)\n*************************"
+    results.append(list(pred))
+    ######################################################
     # # Decision Tree
     # from sklearn.tree import DecisionTreeClassifier
     # dtclf = DecisionTreeClassifier() # default with criterion = "gini"
@@ -51,8 +48,7 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     # pred = dtclf.predict(fea_test)
     # # print "*************************\nDecision Tree\n*************************"
     # results.append(list(pred))
-    # ######################################################
-    # date4 = datetime.datetime.now()
+    ######################################################
     # # Ensemble (Random Forests)
     # from sklearn.ensemble import RandomForestClassifier
     # rfclf = RandomForestClassifier() # default with n_estimators = 10
@@ -60,8 +56,7 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     # pred = rfclf.predict(fea_test)
     # # print "*************************\nEnsemble (Random Forests)\n*************************"
     # results.append(list(pred))
-    # ######################################################
-    # date5 = datetime.datetime.now()
+    ######################################################
     # # Neighbors
     # from sklearn.neighbors import KNeighborsClassifier
     # knnclf = KNeighborsClassifier() # default with n_neighbors = 5
@@ -69,20 +64,6 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     # pred = knnclf.predict(fea_test)
     # # print "*************************\nNeighbors\n*************************"
     # results.append(list(pred))
-    # ######################################################
-    # date6 = datetime.datetime.now()
-    # print date2-date1, "\t", date3-date2, "\t", date4-date3, "\t", date5-date4, "\t", date6-date5
-    # ######################################################
-
-    ######################################################
-    # SVM Classifier
-    from sklearn.svm import SVC
-    from sklearn.svm import LinearSVC
-    clf = LinearSVC()
-    clf.fit(fea_train, train_targets_dimensions)
-    pred = clf.predict(fea_test)
-    # print "*************************\n SVM Classifier \n*************************"
-    results.append(list(pred))
     ######################################################
 
     # ######################################################
@@ -124,11 +105,13 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     return results
 
 
-def Vote(votelist): 
-    elements_list = sorted(list(set(votelist))) # 去重
+def Vote(votelist):
     elements_dict = {}
-    for element in elements_list:
-        elements_dict[element] = votelist.count(element)
+    for element in votelist:
+        if elements_dict.has_key(element):
+            elements_dict[element] += 1
+        else:
+            elements_dict[element] = 1
     # key函数利用词频进行降序排序
-    elements_sortlist = sorted(elements_dict.items(), key=lambda elements_dict:elements_dict[1], reverse=True) # 内建函数sorted参数需为list
+    elements_sortlist = sorted(elements_dict.items(), key=lambda f:f[1], reverse=True) # 内建函数sorted参数需为list
     return elements_sortlist[0][0]

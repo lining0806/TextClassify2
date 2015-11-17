@@ -46,7 +46,6 @@ class MongoDBIO(object):
         return posts
 
 
-# 查询操作
 def TrainDataSelect(host, port, name, password, database, collection):
     posts = MongoDBIO(host, port, name, password, database, collection).Connection()
     print "Number of All Documents in the Collection:", posts.count() # 查询数量
@@ -75,7 +74,7 @@ def TrainDataSelect(host, port, name, password, database, collection):
     return train_datas_targets
 
 
-def TestDataSelect(host, port, name, password, database, collection, Limit_Number):
+def TestDataSelect(host, port, name, password, database, collection, limit_number):
     posts = MongoDBIO(host, port, name, password, database, collection).Connection()
     print "Number of all Documents in the Collection:", posts.count() # 查询数量
 
@@ -89,7 +88,7 @@ def TestDataSelect(host, port, name, password, database, collection, Limit_Numbe
         "country":{"$exists":0},
         "createdtime":{"$gte":starttime, "$lte":endtime},
         "t_status":{"$ne":1}
-    }).sort("createdtime", pymongo.DESCENDING).limit(Limit_Number):
+    }).sort("createdtime", pymongo.DESCENDING).limit(limit_number):
         # print post
         # if len(post["content"])>1:
         if post["content"] is not None:
@@ -102,7 +101,6 @@ def TestDataSelect(host, port, name, password, database, collection, Limit_Numbe
     return test_ids_datas
 
 
-# 更新操作
 def ResultUpdate(test_host, test_port, test_name, test_password, test_database, test_collection, test_ids_targets):
     posts = MongoDBIO(test_host, test_port, test_name, test_password, test_database, test_collection).Connection()
     test_ids = test_ids_targets["ids"]
