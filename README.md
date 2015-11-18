@@ -1,3 +1,9 @@
+# 多算法的文本分类系统
+
+### **更多详见[TextMining](https://github.com/lining0806/TextMining)**
+
+***
+
 ## 关于分词
 **英文分词，采用nltk工具包进行分词**  
 
