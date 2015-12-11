@@ -25,44 +25,52 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     results = []
 
     ######################################################
-    # # Multinomial Naive Bayes Classifier
-    # from sklearn.naive_bayes import MultinomialNB
-    # nbcclf = MultinomialNB() # default with alpha = 1.0 # 分类器模型
-    # nbcclf.fit(fea_train, train_targets_dimensions) # 分类器训练
-    # pred = nbcclf.predict(fea_test) # 分类器识别
-    # # print "*************************\nMultinomial Naive Bayes Classifier (Gaussian likelihood)\n*************************"
+    # # SVM
+    # from sklearn.svm import SVC
+    # svclf = SVC()
+    # svclf.fit(fea_train, train_targets_dimensions)
+    # pred = svclf.predict(fea_test)
+    # # print "*************************\nSVM\n*************************"
     # results.append(list(pred))
     ######################################################
-    # Linear SVM Classifier (Linear kernel)
-    from sklearn.svm import LinearSVC
-    lsvclf = LinearSVC()
-    lsvclf.fit(fea_train, train_targets_dimensions)
-    pred = lsvclf.predict(fea_test)
-    # print "*************************\nLinear SVM Classifier (Linear kernel)\n*************************"
+    # # Linear SVM
+    # from sklearn.svm import LinearSVC
+    # lsvclf = LinearSVC()
+    # lsvclf.fit(fea_train, train_targets_dimensions)
+    # pred = lsvclf.predict(fea_test)
+    # # print "*************************\nLinear SVM\n*************************"
+    # results.append(list(pred))
+    ######################################################
+    # Naive Bayes
+    from sklearn.naive_bayes import MultinomialNB
+    nbcclf = MultinomialNB()
+    nbcclf.fit(fea_train, train_targets_dimensions)
+    pred = nbcclf.predict(fea_test)
+    # print "*************************\nNaive Bayes\n*************************"
     results.append(list(pred))
     ######################################################
-    # # Decision Tree
-    # from sklearn.tree import DecisionTreeClassifier
-    # dtclf = DecisionTreeClassifier() # default with criterion = "gini"
-    # dtclf.fit(fea_train, train_targets_dimensions)
-    # pred = dtclf.predict(fea_test)
-    # # print "*************************\nDecision Tree\n*************************"
+    # # Logistic Regression
+    # from sklearn.linear_model import LogisticRegression
+    # lrclf = LogisticRegression()
+    # lrclf.fit(fea_train, train_targets_dimensions)
+    # pred = lrclf.predict(fea_test)
+    # # print "*************************\nLogistic Regression\n*************************"
     # results.append(list(pred))
     ######################################################
-    # # Ensemble (Random Forests)
-    # from sklearn.ensemble import RandomForestClassifier
-    # rfclf = RandomForestClassifier() # default with n_estimators = 10
-    # rfclf.fit(fea_train, train_targets_dimensions)
-    # pred = rfclf.predict(fea_test)
-    # # print "*************************\nEnsemble (Random Forests)\n*************************"
-    # results.append(list(pred))
-    ######################################################
-    # # Neighbors
+    # # K-Nearest Neighbors
     # from sklearn.neighbors import KNeighborsClassifier
     # knnclf = KNeighborsClassifier() # default with n_neighbors = 5
     # knnclf.fit(fea_train, train_targets_dimensions)
     # pred = knnclf.predict(fea_test)
-    # # print "*************************\nNeighbors\n*************************"
+    # # print "*************************\nK-Nearest Neighbors\n*************************"
+    # results.append(list(pred))
+    ######################################################
+    # # Decision Tree
+    # from sklearn.tree import DecisionTreeClassifier
+    # dtclf = DecisionTreeClassifier()
+    # dtclf.fit(fea_train, train_targets_dimensions)
+    # pred = dtclf.predict(fea_test)
+    # # print "*************************\nDecision Tree\n*************************"
     # results.append(list(pred))
     ######################################################
 
@@ -98,7 +106,7 @@ def TextClassifier(fea_train, fea_test, train_targets_dimensions):
     # )
     # clf.fit(fea_train, train_targets_dimensions)
     # pred = clf.predict(fea_test)
-    # # print "*************************\n SVM Classifier \n*************************"
+    # # print "*************************\nSVM\n*************************"
     # results.append(list(pred))
     # ######################################################
 
